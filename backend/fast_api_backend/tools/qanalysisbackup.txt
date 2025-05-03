@@ -1,0 +1,96 @@
+class QueryDocumentAnalysis:
+    @tool("Query_and_Document_Summary_Analysis")
+    def analyze_query_and_summaries(query, summaries_file_path):
+        """
+        Analyzes user queries against document summaries to determine if a single or multiple documents are needed to answer the query.
+        """
+        # Load document summaries from a JSON file
+        with open(summaries_file_path, 'r') as file:
+            document_summaries = json.load(file)
+
+        # Simulated analysis of the query
+        query_keywords = query.split()  # Simple keyword extraction from the query
+        relevant_documents = []
+
+        # Check each document summary for relevance
+        for summary in document_summaries:
+            if any(keyword.lower() in summary['summary'].lower() for keyword in query_keywords):
+                relevant_documents.append(summary)
+        
+        # Decision making based on the number of relevant documents found
+        if len(relevant_documents) == 1:
+            return {'need_single_doc': True, 'document': relevant_documents[0]}
+        elif len(relevant_documents) > 1:
+            return {'need_single_doc': False, 'documents': relevant_documents}
+        else:
+            return {'need_single_doc': False, 'documents': []}
+        
+
+
+        A structured response that details:
+            - Whether a single document or multiple documents are needed to answer the query.
+            - The specific documents or document summaries that are relevant to the query.
+            - An explanation of how the documents relate to the query, detailing the relevance and sufficiency of the information found within them.
+            This response should enable the next steps in the document handling process, ensuring that the user's query is answered effectively and efficiently.
+        
+
+        # Check each document summary for relevance
+        relevant_documents = []
+        for summary in document_summaries:
+            summary_text = summary['summary'].lower()
+            if any(keyword in summary_text for keyword in query_keywords):
+                relevant_documents.append(summary)
+
+
+                Analyze, compare, and contrast the information contained within the documents to extract and highlight key themes, discrepancies,
+        and conclusions relevant to the user's query. This synthesis should resolve the query with depth and breadth,
+        drawing on diverse sources to provide a rich and well-rounded answer.goal=f"""Activated only after the query analysis agent has completed its assessment and identified the relevant documents necessary to address the user's query.
+      This agent's primary function is to integrate and synthesize insights from multiple documents to formulate a comprehensive, nuanced response. 
+      It delves deep into the content of each selected document, extracts vital themes, identifies discrepancies, and interconnects these
+        findings to construct a detailed and insightful narrative that fully addresses the complexities of the query.
+          The synthesis process is meticulous, aiming to provide a multifaceted answer that draws from a diverse array of sources,
+            thereby enriching the final output with well-rounded perspectives.""",
+
+
+
+    
+    class QueryDocumentAnalysis:
+    @tool("Query_and_Document_Summary_Analysis")
+    def analyze_query_and_summaries(query, summaries_path):
+        """
+        Analyzes user queries against document summaries to determine if a single or multiple documents are needed to answer the query.
+        """
+        # Load document summaries from a JSON file
+        try:
+            with open(summaries_path, 'r') as file:
+                document_summaries = json.load(file)
+        except IOError as e:
+            return {"error": f"Error opening file: {e}"}
+        except json.JSONDecodeError as e:
+            return {"error": f"Error decoding JSON: {e}"}
+        except Exception as e:
+            print(f"Failed to load summaries: {e}")
+            
+
+        # Advanced keyword extraction from the query
+        stop_words = set(stopwords.words('english'))
+        query_keywords = [word.lower() for word in word_tokenize(query) if word.lower() not in stop_words]
+
+        # Check each document summary for relevance
+        relevant_documents = []
+        for summary in document_summaries:
+            summary_text = summary['summary'].lower()
+            if any(keyword in summary_text for keyword in query_keywords):
+                relevant_documents.append({
+                    "title": summary['title'],
+                    "path": summary['path']
+                })
+                
+        
+        # Decision making based on the number of relevant documents found
+        if len(relevant_documents) == 1:
+            return {'need_single_doc': True, 'document': relevant_documents[0]}
+        elif len(relevant_documents) > 1:
+            return {'need_multiple_docs':True, 'documents': relevant_documents}
+        else:
+            return {'need_single_doc': False, 'documents': []}

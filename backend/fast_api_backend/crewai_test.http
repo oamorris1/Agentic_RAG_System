@@ -1,0 +1,23 @@
+### Request 1
+POST http://127.0.0.1:3001/api/crew
+Content-Type: application/json
+
+{
+    "user_query": "What are some common variables used in studies regarding human error-based aviation accidents?"
+}
+
+### Request 2
+POST http://127.0.0.1:3001/api/crew
+Content-Type: application/json
+
+{
+    "user_query": "What are some best practices for managing error prevention in complex systems?"
+}
+
+### Request 3
+POST http://127.0.0.1:3001/api/crew
+Content-Type: application/json
+
+{
+    "user_query": "How do human error rates in aviation compare to those in healthcare?"
+}
