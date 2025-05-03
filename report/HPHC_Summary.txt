@@ -1,0 +1,187 @@
+**Authors:**
+- Omar A. Morris, Dept. of Electrical & Computer Engineering, Jackson State University, Jackson, MS, USA
+- Khalid H. Abed, Dept. of Electrical & Computer Engineering, Jackson State University, Jackson, MS, USA
+
+**Abstract:**
+This paper presents the configuration and administration of a Cray CS 400 heterogeneous cluster using Bright Cluster Management software. It details the architecture of the computational environment and the steps taken from initial assembly of the hardware to the installation of the various software layers that comprise the OS and system management tools. The Bright Cluster Manager is an enterprise-level software suite that provides bare metal to fully functioning system management of High Performance Computing clusters and Big Data systems.
+
+**Research Problem:**
+The research addresses the challenge of configuring and managing a high-performance computing (HPC) cluster to handle the growing complexity and vast amounts of data in modern applications and computational models.
+
+**Objectives:**
+- To configure and administer a Cray CS 400 heterogeneous cluster.
+- To utilize Bright Cluster Management software for system management.
+- To detail the steps from hardware assembly to software installation.
+- To evaluate the performance of the cluster using benchmarking tools.
+
+**Methodology:**
+- Description of the hardware specifications of the head node and compute nodes.
+- Network topology setup using 10Gb Ethernet and FDR InfiniBand.
+- Installation of Bright Cluster Manager on a bare metal system.
+- Creation of a custom compute node image.
+- Installation of the Many Platform Software Stack (MPSS) for Xeon Phi coprocessors.
+- Configuration of the module environment and Intel compiler.
+- Execution of benchmarking tools and mini-applications for performance evaluation.
+
+**Key Findings:**
+- Successful configuration and administration of the Cray CS 400 cluster using Bright Cluster Manager.
+- Detailed steps for software installation and configuration, including handling installation errors.
+- Creation of a custom compute node image and configuration of the Xeon Phi coprocessors.
+- Use of mini-applications like MiniMD for performance evaluation on the cluster.
+
+**Limitations:**
+- The paper does not discuss the actual performance results of the cluster.
+- The initial installation process involved several errors and required a trial-and-error approach.
+
+**Gaps in Literature:**
+- The need for more detailed documentation on the installation and configuration process of HPC clusters.
+- The gap between benchmark results and actual application performance on production-level HPC platforms.
+
+**Future Research Directions:**
+- Detailed performance evaluation of the cluster.
+- Improvement of the installation and administration process.
+- Exploration of other mini-applications for performance testing.
+
+**Key Terms:**
+- High Performance Computing (HPC)
+- Cray CS 400
+- Bright Cluster Manager
+- Intel Xeon Phi
+- Many Integrated Core (MIC)
+- Peripheral Component Interconnect Express (PCIe)
+- Network Topology
+- Many Platform Software Stack (MPSS)
+- MiniMD
+- Mantevo Project
+
+**Summary:**
+The paper by Omar A. Morris and Khalid H. Abed provides a comprehensive guide to configuring and administering a Cray CS 400 heterogeneous cluster using Bright Cluster Management software. The research addresses the need for powerful hardware and software to handle the growing complexity and vast amounts of data in modern applications. The Cray CS 400 cluster consists of a single head node and six compute nodes, each equipped with Intel Xeon processors and Xeon Phi coprocessors. The network topology includes a 10Gb Ethernet network and FDR InfiniBand for high-speed data transfer.
+
+The authors detail the installation process of Bright Cluster Manager on a bare metal system, emphasizing the importance of allowing the software to override any conflicts during installation. They describe the creation of a custom compute node image and the installation of the Many Platform Software Stack (MPSS) for the Xeon Phi coprocessors. The module environment and Intel compiler are configured to enable program execution on the cluster.
+
+For performance evaluation, the authors use mini-applications like MiniMD, a simplified version of the LAMMPS program, developed under the Mantevo Project. MiniMD is used to compare the performance of the algorithm on a conventional multi-core Xeon processor and the Xeon Phi architecture. The research aims to achieve significant speed and efficiency improvements in runtime on the MIC hardware.
+
+The paper highlights the challenges and lessons learned during the installation process, including the importance of using a package installer and ensuring repository access. The authors acknowledge the limitations of their study, such as the lack of performance results and the initial trial-and-error approach. They suggest future research directions, including detailed performance evaluation and improvement of the installation process.
+
+Overall, the paper provides valuable insights into the configuration and administration of HPC clusters, emphasizing the importance of proper software installation and configuration for optimal performance. The use of mini-applications for performance testing is highlighted as a practical approach for evaluating new hardware systems.**Summary: Configuration and Administration of a Cray CS 400 Heterogeneous Cluster with Bright Cluster Manager**
+
+**Introduction:**
+The paper discusses the configuration and administration of a Cray CS 400 heterogeneous cluster using Bright Cluster Manager. The focus is on the architecture of the computational environment and the steps taken from the initial assembly of the hardware to the installation of various software layers, including the operating system (OS) and system management tools. Bright Cluster Manager is an enterprise-level software suite that provides comprehensive system management for High Performance Computing (HPC) clusters and Big Data systems.
+
+**High Performance Computing (HPC):**
+HPC involves the aggregation of computational elements to implement large-scale, mathematically intensive applications in fields such as engineering, science, mathematics, and business. It is used for modeling complex physical phenomena like climate change, 3-D protein mapping, military applications, and academic research. The industry has turned to accelerators or coprocessing units to enhance the power and efficiency of traditional CPUs. Intel's Xeon Phi Many Integrated Core (MIC) coprocessor is one such accelerator, designed to execute highly parallel, numerically intensive applications efficiently.
+
+**System Environment:**
+The Cray CS 400 system used in this research consists of a single head node and six compute nodes.
+
+- **Head Node:** Equipped with an Intel Xeon E5-2650 v3 CPU, Connect-IB (InfiniBand) Single Port QSFP, Fourteen Data Rate (FDR) adapter card, ConnectX-3 EN10GbE Dual-Port SFP+ PCIe3.0 x8 8GT/s Network Interface Card, and an Intel RS2BL08D 8-port SAS RAID controller.
+- **Compute Nodes:** Each compute node (node001 – node006) has an Intel Xeon E5-2698 2.3GHz CPU and dual Intel Xeon Phi 7120 passively cooled 1.25 GHz coprocessors. The Xeon Phi 7120 features 61 in-order 64-bit cores, 16GB of GDDR memory, and a Linux-based operating system called uOS. Each core has a 32KB L1 instruction cache, a 32KB L1 data cache, a 512KB L2 cache, and a vector processing unit (VPU) capable of processing 16 single-precision or 8 double-precision floating-point arithmetic operations or 32-bit integers in parallel. Each core supports multithreading with four hardware threads, allowing each compute node to run 488 threads.
+
+**Network Topology:**
+The Jackson State University (JSU) cluster is connected via a 10Gb Ethernet network and FDR InfiniBand. The InfiniBand core fabric connects the compute nodes, enabling high-speed data transfer, while the 10Gb and 1Gb switches facilitate network management and remote SSH communication.
+
+**Software Installation:**
+The Bright Cluster Manager was installed using the add-on method on a system with Redhat Enterprise Linux Server version 6.5. The installation process involved several steps, including registering with Redhat Network (RHN), configuring repository access, and installing the Bright Cluster Manager package using the bright-installer 7.1.
+
+**Compute Node Image Creation:**
+A custom image for the compute nodes was created using the `cm-create-image` command and set as the default image for provisioning. The nodes boot from the network via the 10Gb Ethernet connection.
+
+**Many Platform Software Stack (MPSS):**
+The MPSS software required for the Xeon Phi was installed using YUM. The MIC environment variables were added, and the Xeon Phi coprocessors were configured using Bright's MIC configuration tool.
+
+**Module Environment:**
+Programs are stored centrally on the head node and accessed using the modules environment software package. The Intel Compiler suite was loaded onto the compute nodes, and the Flexlm license service was started to enable the Intel compiler.
+
+**Intel Compiler:**
+The Intel compilers rely on environment variables to function properly. The setup script `compilervars.sh` was executed to configure the Linux runtime environment, and the environment variable `INTEL_LICENSE_FILE` was set to point to the location of the Flexlm license.
+
+**Research:**
+The research involved evaluating new approaches in HPC hardware using benchmarking tools and mini-apps. The Mantevo Project developed mini-apps, which are compact self-contained proxies of full-scale applications, to provide reliable and accurate predictors of application and system performance.
+
+**MiniMD Parallel Simulator (LAMMPS):**
+MiniMD is a simplified version of the Large-scale Atomic Molecular Massively Parallel Simulator (LAMMPS). It uses spatial decomposition and supports the Lennard-Jones (LJ) inter-atomic potential. MiniMD was ported to the Intel Xeon Phi to analyze and compare its performance with a conventional multicore Xeon CPU.
+
+**Conclusion:**
+The paper provides an overview of the process and software used to configure and manage the Cray CS 400 cluster. Bright Cluster Manager worked seamlessly with Intel's software and drivers. Future work will focus on detailing actual cluster performance and improving the installation and administration process.
+
+**Acknowledgements:**
+The work was supported by the U.S. Department of Defense High Performance Computing Modernization Program and the Army Research Office HBCU/MSI contract.
+
+**References:**
+The paper cites various sources, including works on OpenMP programming on Intel Xeon Phi coprocessors, Intel Xeon Phi coprocessor architecture and tools, and the Mantevo Project.**Authors:** Omar A. Morris, Khalid H. Abed
+
+**DOI:** Not provided in the document.
+
+**Title:** Configuration and Administration of a Cray CS 400 Heterogeneous Cluster with Bright Cluster Manager
+
+**Abstract:** This paper presents the configuration and administration of a Cray CS 400 heterogeneous cluster using Bright Cluster Management software. It details the architecture of the computational environment and the steps taken from initial assembly of the hardware to the installation of various software layers that comprise the OS and system management tools. The Bright Cluster Manager is an enterprise-level software suite that provides bare metal to fully functioning system management of High Performance Computing clusters and Big Data systems.
+
+**Research Problem:** The research addresses the challenge of configuring and managing a high-performance computing (HPC) cluster to handle the growing complexity and vast amounts of data in modern applications and computational models.
+
+**Objectives:** 
+1. To configure and administer a Cray CS 400 heterogeneous cluster.
+2. To utilize Bright Cluster Management software for system management.
+3. To detail the steps from hardware assembly to software installation.
+4. To evaluate the performance of the cluster using benchmarking tools.
+
+**Methodology:** 
+1. Description of the hardware specifications of the head node and compute nodes.
+2. Network topology setup.
+3. Installation of Bright Cluster Manager on a bare metal system.
+4. Creation of compute node images.
+5. Installation of Many Platform Software Stack (MPSS) for Xeon Phi coprocessors.
+6. Configuration of the module environment and Intel compiler.
+7. Execution of benchmarking tools and mini-applications for performance evaluation.
+
+**Key Findings:** 
+1. Successful configuration and administration of the Cray CS 400 cluster using Bright Cluster Manager.
+2. Detailed steps for software installation and configuration, including handling errors and conflicts.
+3. Use of mini-applications like MiniMD for performance evaluation on the Xeon Phi architecture.
+4. Bright Cluster Manager worked seamlessly with Intel’s software and drivers.
+
+**Limitations:** 
+1. The paper does not discuss the performance results of the cluster.
+2. The initial installation process involved several errors and trial-and-error learning.
+
+**Gaps in Literature:** 
+1. The need for more detailed performance evaluations of HPC clusters using real-world applications.
+2. Exploration of more efficient methods for initial setup and configuration of HPC clusters.
+
+**Future Research Directions:** 
+1. Detailed performance analysis of the cluster.
+2. Improvement of the installation and administration process.
+3. Exploration of other mini-applications for performance benchmarking.
+
+**Key Terms:** 
+1. High Performance Computing (HPC)
+2. Cray CS 400
+3. Bright Cluster Manager
+4. Xeon Phi
+5. Many Integrated Core (MIC)
+6. MiniMD
+7. Benchmarking tools
+8. Network topology
+9. Compute node image
+10. Many Platform Software Stack (MPSS)
+
+**Summary:**
+
+The paper by Omar A. Morris and Khalid H. Abed provides a comprehensive guide on configuring and administering a Cray CS 400 heterogeneous cluster using Bright Cluster Manager. The research addresses the increasing complexity and data demands in modern computational models, necessitating powerful hardware and efficient software management.
+
+The Cray CS 400 system used in the study comprises a single head node and six compute nodes, each equipped with Intel Xeon processors and Xeon Phi coprocessors. The head node features an Intel Xeon E5-2650 v3 CPU, InfiniBand adapter, and a 10GbE network interface card. The compute nodes, named node001 to node006, have Intel Xeon E5-2698 CPUs and dual Intel Xeon Phi 7120 coprocessors, capable of running 488 threads each.
+
+The network topology of the Jackson State University (JSU) cluster includes a 10Gb Ethernet network and FDR InfiniBand, facilitating high-speed data transfer and remote SSH communication.
+
+The software installation process involved using Bright Cluster Manager, an enterprise-level software suite for HPC clusters. The recommended method is installing on a bare metal system to avoid configuration errors. The authors describe the add-on installation method they used, which initially led to several mistakes and required starting over. Key lessons learned include the importance of using a package installer and allowing Bright Cluster Manager to override any system conflicts.
+
+The compute nodes receive a software image from the head node, customized with specific software packages. The Many Platform Software Stack (MPSS) is installed for the Xeon Phi coprocessors, and the MIC environment variables are configured using Bright’s MIC configuration tool.
+
+The module environment software package, installed with Bright Cluster Manager, allows programs to be shared across nodes. The Intel compilers rely on environment variables, and the Flexlm license service is started on the head node to enable compiler usage.
+
+For research, the authors used MiniMD, a mini-application from the Mantevo Project, to evaluate the performance of the cluster. MiniMD is a simplified version of the LAMMPS program, designed for ease of porting to new hardware. The research involved executing MiniMD on a conventional Xeon CPU, in native mode on the Xeon Phi coprocessor, and in offload execution mode.
+
+The paper concludes that Bright Cluster Manager worked seamlessly with Intel’s software and drivers. Future work will focus on detailed performance analysis and improving the installation and administration process.
+
+The study highlights the importance of selecting appropriate benchmarking tools and mini-applications for evaluating HPC systems. The Mantevo Project’s mini-apps, like MiniMD, provide reliable and accurate performance predictions while being easier to understand and deploy than full-scale applications.
+
+Overall, the paper provides valuable insights into the configuration and management of HPC clusters, emphasizing the need for efficient software tools and detailed performance evaluations.

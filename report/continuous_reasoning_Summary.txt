@@ -1,0 +1,102 @@
+**Authors:** Shibo Hao, Sainbayar Sukhbaatar, DiJia Su, Xian Li, Zhiting Hu, Jason Weston, Yuandong Tian
+
+**DOI:** Not provided in the text.
+
+**Title:** Training Large Language Models to Reason in a Continuous Latent Space
+
+**Abstract:** 
+Large language models (LLMs) typically reason in the "language space," expressing reasoning processes with a chain-of-thought (CoT) to solve complex problems. However, this language space may not always be optimal for reasoning. To explore the potential of LLM reasoning in an unrestricted latent space, the authors introduce a new paradigm called Coconut (Chain of Continuous Thought). Coconut uses the last hidden state of the LLM as a representation of the reasoning state, feeding it back to the LLM as the subsequent input embedding directly in the continuous space. Experiments show that Coconut can effectively augment the LLM on several reasoning tasks, leading to emergent advanced reasoning patterns. Coconut outperforms CoT in certain logical reasoning tasks requiring substantial backtracking during planning, with fewer thinking tokens during inference. These findings demonstrate the promise of latent reasoning and offer valuable insights for future research.
+
+**Research Problem:** 
+The research addresses the limitations of LLMs reasoning within the language space, where the reasoning process is expressed through word tokens. This approach is not always optimal as it may involve unnecessary tokens for textual coherence and pose challenges for complex planning.
+
+**Objectives:** 
+1. To explore the potential of LLM reasoning in an unrestricted latent space.
+2. To introduce and validate a new reasoning paradigm, Coconut, which uses continuous thoughts instead of language tokens.
+3. To demonstrate the effectiveness of Coconut in enhancing LLM reasoning capabilities on various tasks.
+
+**Methodology:** 
+1. **Coconut Paradigm:** Introduces a new reasoning paradigm where the last hidden state of the LLM (continuous thought) is used as the next input embedding, bypassing the need for language tokens.
+2. **Multi-Stage Training:** Inspired by Deng et al. (2024), a multi-stage training strategy is employed to guide the training process using language reasoning chains.
+3. **Experiments:** Conducted on three datasets (GSM8k for math reasoning, ProntoQA, and ProsQA for logical reasoning) to validate the feasibility and effectiveness of Coconut.
+
+**Key Findings:** 
+1. **Enhanced Reasoning:** Coconut significantly improves reasoning accuracy and efficiency compared to traditional CoT methods.
+2. **Advanced Reasoning Patterns:** Continuous thoughts enable the model to encode multiple alternative next steps, allowing for a breadth-first search (BFS) approach to problem-solving.
+3. **Efficiency:** Coconut generates fewer tokens during inference, making it more efficient.
+4. **Planning-Intensive Tasks:** Coconut outperforms CoT in tasks requiring substantial planning and backtracking.
+
+**Limitations:** 
+1. **Training Efficiency:** The sequential nature of multiple forward passes in training poses challenges for parallelism.
+2. **Inference Strategy:** Determining when to switch between latent and language modes during inference can be challenging.
+
+**Gaps in Literature:** 
+1. **Latent Reasoning:** Previous works have not fully explored the potential of latent reasoning in LLMs, particularly in comparison to language-based reasoning.
+2. **Training Strategies:** There is a need for more general and effective training strategies for learning reasoning in latent space without relying on language reasoning chains.
+
+**Future Research Directions:** 
+1. **Pretraining with Continuous Thoughts:** Investigate the potential of pretraining LLMs with continuous thoughts to enhance generalization across various reasoning scenarios.
+2. **Combining Language and Latent Reasoning:** Explore hybrid approaches that combine language and latent reasoning for improved performance and stability.
+
+**Key Terms:** 
+1. **LLMs (Large Language Models):** Models trained on extensive language data to perform various language tasks.
+2. **CoT (Chain-of-Thought):** A reasoning approach where the model generates solutions step-by-step using natural language.
+3. **Coconut (Chain of Continuous Thought):** A new reasoning paradigm that uses continuous thoughts instead of language tokens.
+4. **Continuous Thought:** The last hidden state of the LLM used as the next input embedding.
+5. **Breadth-First Search (BFS):** A search algorithm that explores all possible paths simultaneously.
+
+**Summary:**
+The paper introduces Coconut, a novel paradigm for reasoning in continuous latent space, addressing the limitations of traditional language-based reasoning in LLMs. Coconut uses the last hidden state of the LLM as a continuous thought, feeding it back as the next input embedding, thus bypassing the need for language tokens. This approach allows the model to reason in an unrestricted latent space, leading to advanced reasoning patterns and improved efficiency.
+
+The methodology involves a multi-stage training strategy inspired by Deng et al. (2024), which uses language reasoning chains to guide the training process. Experiments conducted on three datasets (GSM8k, ProntoQA, and ProsQA) demonstrate that Coconut significantly enhances reasoning accuracy and efficiency compared to traditional CoT methods. Continuous thoughts enable the model to encode multiple alternative next steps, allowing for a BFS approach to problem-solving. Coconut outperforms CoT in tasks requiring substantial planning and backtracking, generating fewer tokens during inference.
+
+The study highlights the potential of latent reasoning and suggests future research directions, including pretraining LLMs with continuous thoughts and exploring hybrid approaches that combine language and latent reasoning. The findings underscore the promise of latent reasoning and offer valuable insights for developing more advanced machine reasoning systems.**Authors:** Shibo Hao, Sainbayar Sukhbaatar, DiJia Su, Xian Li, Zhiting Hu, Jason Weston, Yuandong Tian
+
+**DOI:** Not provided in the text.
+
+**Title:** Training Large Language Models to Reason in a Continuous Latent Space
+
+**Abstract:** 
+Large language models (LLMs) typically reason in the "language space," expressing reasoning processes with a chain-of-thought (CoT) to solve complex problems. However, language space may not always be optimal for reasoning. Most word tokens are for textual coherence and not essential for reasoning, while some critical tokens require complex planning and pose challenges to LLMs. To explore LLM reasoning in an unrestricted latent space, the authors introduce Coconut (Chain of Continuous Thought). Coconut uses the last hidden state of the LLM as a representation of the reasoning state ("continuous thought") and feeds it back to the LLM as the subsequent input embedding directly in the continuous space. Experiments show that Coconut can effectively augment LLMs on several reasoning tasks, leading to emergent advanced reasoning patterns. Coconut outperforms CoT in certain logical reasoning tasks requiring substantial backtracking during planning, with fewer thinking tokens during inference. These findings demonstrate the promise of latent reasoning and offer valuable insights for future research.
+
+**Research Problem:** 
+The research addresses the limitations of LLMs reasoning in the language space, where the reasoning process is expressed through word tokens, which may not be optimal for complex reasoning tasks.
+
+**Objectives:** 
+1. To explore the potential of LLM reasoning in an unrestricted latent space.
+2. To introduce and validate a new paradigm, Coconut, for reasoning in a continuous latent space.
+3. To compare the performance of Coconut with traditional CoT reasoning on various reasoning tasks.
+
+**Methodology:** 
+1. **Coconut Paradigm:** Introduces a new reasoning paradigm where the last hidden state of the LLM (continuous thought) is used as the next input embedding, allowing reasoning in a latent space.
+2. **Training Procedure:** Utilizes a multi-stage training strategy inspired by Deng et al. (2024), where language reasoning chains guide the training process. The model switches between language mode and latent mode, with special tokens marking the beginning and end of latent thought mode.
+3. **Inference Process:** Similar to standard language model decoding, but in latent mode, the last hidden state is directly fed as the next input embedding. Strategies for determining when to switch between modes are explored.
+
+**Key Findings:** 
+1. **Enhanced Reasoning:** Coconut significantly enhances LLM reasoning capabilities, particularly in tasks requiring substantial planning and backtracking.
+2. **Efficiency:** Coconut generates fewer tokens during inference, indicating more efficient reasoning.
+3. **Advanced Reasoning Patterns:** Continuous thoughts can encode multiple alternative next steps, allowing for a breadth-first search (BFS) reasoning process.
+4. **Performance:** Coconut outperforms CoT in logical reasoning tasks like ProntoQA and ProsQA, and shows promising results in math reasoning tasks like GSM8k.
+
+**Limitations:** 
+1. **Training Efficiency:** The sequential nature of multiple forward passes poses challenges for parallelism, affecting training efficiency.
+2. **Inference Strategy:** Determining the optimal strategy for switching between latent and language modes during inference remains a challenge.
+
+**Gaps in Literature:** 
+1. **Latent Reasoning:** Limited exploration of LLM reasoning in latent spaces compared to language spaces.
+2. **Training Strategies:** Need for more refined and general strategies for training LLMs to reason in latent spaces without relying on language reasoning chains.
+
+**Future Research Directions:** 
+1. **Pretraining with Continuous Thoughts:** Investigate pretraining LLMs with continuous thoughts to enable better generalization across reasoning scenarios.
+2. **Combining Reasoning Modes:** Explore combining language and latent reasoning, such as generating reasoning skeletons in language and completing the process in latent space.
+3. **Optimizing Training Efficiency:** Develop methods to improve the training efficiency of Coconut, particularly in handling multiple forward passes.
+
+**Key Terms:** 
+1. **LLMs (Large Language Models):** Models trained on large datasets to understand and generate human language.
+2. **CoT (Chain-of-Thought):** A reasoning process where the model generates solutions step-by-step using natural language.
+3. **Coconut (Chain of Continuous Thought):** A new paradigm where the last hidden state of the LLM is used as the next input embedding, allowing reasoning in a continuous latent space.
+4. **Continuous Thought:** The representation of the reasoning state in the latent space.
+5. **Breadth-First Search (BFS):** A search algorithm that explores all possible paths simultaneously before committing to a single path.
+
+**Summary:**
+The paper introduces Coconut, a novel paradigm for reasoning in a continuous latent space, addressing the limitations of traditional CoT reasoning in language space. Coconut uses the last hidden state of the LLM as a representation of the reasoning state, feeding it back as the next input embedding. This approach allows the model to reason in an unrestricted latent space, leading to advanced reasoning patterns and more efficient reasoning processes. The methodology involves a multi-stage training strategy, leveraging language reasoning chains to guide the training process. Experiments on datasets like GSM8k, ProntoQA, and ProsQA demonstrate that Coconut significantly enhances LLM reasoning capabilities, particularly in tasks requiring substantial planning and backtracking. The study highlights the potential of latent reasoning and suggests future research directions, including pretraining with continuous thoughts and combining language and latent reasoning. The findings offer valuable insights for developing more advanced machine reasoning systems.
