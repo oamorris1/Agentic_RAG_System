@@ -75,7 +75,7 @@ HPC involves the aggregation of computational elements to implement large-scale,
 The Cray CS 400 system used in this research consists of a single head node and six compute nodes.
 
 - **Head Node:** Equipped with an Intel Xeon E5-2650 v3 CPU, Connect-IB (InfiniBand) Single Port QSFP, Fourteen Data Rate (FDR) adapter card, ConnectX-3 EN10GbE Dual-Port SFP+ PCIe3.0 x8 8GT/s Network Interface Card, and an Intel RS2BL08D 8-port SAS RAID controller.
-- **Compute Nodes:** Each compute node (node001 – node006) has an Intel Xeon E5-2698 2.3GHz CPU and dual Intel Xeon Phi 7120 passively cooled 1.25 GHz coprocessors. The Xeon Phi 7120 features 61 in-order 64-bit cores, 16GB of GDDR memory, and a Linux-based operating system called uOS. Each core has a 32KB L1 instruction cache, a 32KB L1 data cache, a 512KB L2 cache, and a vector processing unit (VPU) capable of processing 16 single-precision or 8 double-precision floating-point arithmetic operations or 32-bit integers in parallel. Each core supports multithreading with four hardware threads, allowing each compute node to run 488 threads.
+- **Compute Nodes:** Each compute node (node001 â€“ node006) has an Intel Xeon E5-2698 2.3GHz CPU and dual Intel Xeon Phi 7120 passively cooled 1.25 GHz coprocessors. The Xeon Phi 7120 features 61 in-order 64-bit cores, 16GB of GDDR memory, and a Linux-based operating system called uOS. Each core has a 32KB L1 instruction cache, a 32KB L1 data cache, a 512KB L2 cache, and a vector processing unit (VPU) capable of processing 16 single-precision or 8 double-precision floating-point arithmetic operations or 32-bit integers in parallel. Each core supports multithreading with four hardware threads, allowing each compute node to run 488 threads.
 
 **Network Topology:**
 The Jackson State University (JSU) cluster is connected via a 10Gb Ethernet network and FDR InfiniBand. The InfiniBand core fabric connects the compute nodes, enabling high-speed data transfer, while the 10Gb and 1Gb switches facilitate network management and remote SSH communication.
@@ -137,7 +137,7 @@ The paper cites various sources, including works on OpenMP programming on Intel 
 1. Successful configuration and administration of the Cray CS 400 cluster using Bright Cluster Manager.
 2. Detailed steps for software installation and configuration, including handling errors and conflicts.
 3. Use of mini-applications like MiniMD for performance evaluation on the Xeon Phi architecture.
-4. Bright Cluster Manager worked seamlessly with Intel’s software and drivers.
+4. Bright Cluster Manager worked seamlessly with Intelâ€™s software and drivers.
 
 **Limitations:** 
 1. The paper does not discuss the performance results of the cluster.
@@ -174,14 +174,14 @@ The network topology of the Jackson State University (JSU) cluster includes a 10
 
 The software installation process involved using Bright Cluster Manager, an enterprise-level software suite for HPC clusters. The recommended method is installing on a bare metal system to avoid configuration errors. The authors describe the add-on installation method they used, which initially led to several mistakes and required starting over. Key lessons learned include the importance of using a package installer and allowing Bright Cluster Manager to override any system conflicts.
 
-The compute nodes receive a software image from the head node, customized with specific software packages. The Many Platform Software Stack (MPSS) is installed for the Xeon Phi coprocessors, and the MIC environment variables are configured using Bright’s MIC configuration tool.
+The compute nodes receive a software image from the head node, customized with specific software packages. The Many Platform Software Stack (MPSS) is installed for the Xeon Phi coprocessors, and the MIC environment variables are configured using Brightâ€™s MIC configuration tool.
 
 The module environment software package, installed with Bright Cluster Manager, allows programs to be shared across nodes. The Intel compilers rely on environment variables, and the Flexlm license service is started on the head node to enable compiler usage.
 
 For research, the authors used MiniMD, a mini-application from the Mantevo Project, to evaluate the performance of the cluster. MiniMD is a simplified version of the LAMMPS program, designed for ease of porting to new hardware. The research involved executing MiniMD on a conventional Xeon CPU, in native mode on the Xeon Phi coprocessor, and in offload execution mode.
 
-The paper concludes that Bright Cluster Manager worked seamlessly with Intel’s software and drivers. Future work will focus on detailed performance analysis and improving the installation and administration process.
+The paper concludes that Bright Cluster Manager worked seamlessly with Intelâ€™s software and drivers. Future work will focus on detailed performance analysis and improving the installation and administration process.
 
-The study highlights the importance of selecting appropriate benchmarking tools and mini-applications for evaluating HPC systems. The Mantevo Project’s mini-apps, like MiniMD, provide reliable and accurate performance predictions while being easier to understand and deploy than full-scale applications.
+The study highlights the importance of selecting appropriate benchmarking tools and mini-applications for evaluating HPC systems. The Mantevo Projectâ€™s mini-apps, like MiniMD, provide reliable and accurate performance predictions while being easier to understand and deploy than full-scale applications.
 
 Overall, the paper provides valuable insights into the configuration and management of HPC clusters, emphasizing the need for efficient software tools and detailed performance evaluations.
