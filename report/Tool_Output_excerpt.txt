@@ -1,0 +1,64 @@
+## Tool Output:
+{&#39;documents&#39;: [{&#39;title&#39;: &#39;Application_of_Eye_Tracking_Technology.pdf&#39;, &#39;path&#39;:
+&#39;C:\\Users\\omarmorris\\Desktop\\crew_docs\\documents\\Application_of_Eye_Tracking
+_Technology.pdf&#39;, &#39;score&#39;: 0.7897164344976112}, {&#39;title&#39;:
+&#39;The_role_of_human_factors_in_aviation_ground_operation_related_accidents.pdf&#39;,
+
+&#39;path&#39;:
+&#39;C:\\Users\\omarmorris\\Desktop\\crew_docs\\documents\\The_role_of_human_factors_i
+n_aviation_ground_operation_related_accidents.pdf&#39;, &#39;score&#39;: 0.8648637319226046}],
+&#39;scores&#39;: [{&#39;title&#39;: &#39;Application_of_Eye_Tracking_Technology.pdf&#39;, &#39;path&#39;:
+&#39;C:\\Users\\omarmorris\\Desktop\\crew_docs\\documents\\Application_of_Eye_Tracking
+_Technology.pdf&#39;, &#39;score&#39;: 0.7897164344976112}, {&#39;title&#39;: &#39;HPHC.pdf&#39;, &#39;path&#39;:
+&#39;C:\\Users\\omarmorris\\Desktop\\crew_docs\\documents\\HPHC.pdf&#39;, &#39;score&#39;:
+0.6706921829906692}, {&#39;title&#39;:
+&#39;The_role_of_human_factors_in_aviation_ground_operation_related_accidents.pdf&#39;,
+&#39;path&#39;:
+&#39;C:\\Users\\omarmorris\\Desktop\\crew_docs\\documents\\The_role_of_human_factors_i
+n_aviation_ground_operation_related_accidents.pdf&#39;, &#39;score&#39;: 0.8648637319226046}]}
+
+# Agent: Expert Query Analyzer and Classifier
+## Final Answer:
+- **Title:**
+The_role_of_human_factors_in_aviation_ground_operation_related_accidents.pdf
+- **Path:**
+C:\\Users\\omarmorris\\Desktop\\crew_docs\\documents\\The_role_of_human_factors_i
+n_aviation_ground_operation_related_accidents.pdf
+- **Description:** This document is highly relevant as it specifically examines human
+factors in aviation accidents using established frameworks to identify human errors and
+organizational influences. It details different types of human errors during aviation
+ground operations and provides recommendations to mitigate these errors.
+
+- **Title:** Application_of_Eye_Tracking_Technology.pdf
+- **Path:**
+C:\\Users\\omarmorris\\Desktop\\crew_docs\\documents\\Application_of_Eye_Tracking_
+Technology.pdf
+- **Description:** This document is pertinent because it explores how eye tracking
+technology can be used to gain insights into human cognitive states and performance in
+high-risk industries, including aviation. It covers various aspects of human factors such
+
+as visual attention, mental workload, and fatigue, which are crucial for understanding
+and reducing human errors in aviation accidents.
+
+2025-05-02 11:05:23,596 - root - INFO - Appending event for 4027a9cd-0619-470b-
+8290-cee1e18246b0 with output - **Title:**
+The_role_of_human_factors_in_aviation_ground_operation_related_accidents.pdf
+- **Path:**
+C:\\Users\\omarmorris\\Desktop\\crew_docs\\documents\\The_role_of_human_factors_i
+n_aviation_ground_operation_related_accidents.pdf
+- **Description:** This document is highly relevant as it specifically examines human
+factors in aviation accidents using established frameworks to identify human errors and
+organizational influences. It details different types of human errors during aviation
+ground operations and provides recommendations to mitigate these errors.
+
+- **Title:** Application_of_Eye_Tracking_Technology.pdf
+- **Path:**
+C:\\Users\\omarmorris\\Desktop\\crew_docs\\documents\\Application_of_Eye_Tracking_
+Technology.pdf
+- **Description:** This document is pertinent because it explores how eye tracking
+technology can be used to gain insights into human cognitive states and performance in
+high-risk industries, including aviation. It covers various aspects of human factors such
+as visual attention, mental workload, and fatigue, which are crucial for understanding
+and reducing human errors in aviation accidents.
+2025-05-02 11:05:23,606 - root - INFO - Appending event for job: 4027a9cd-0619-470b-
+8290-cee1e18246b0
