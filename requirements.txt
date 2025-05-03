@@ -206,13 +206,7 @@ platformdirs==4.3.6
 pluggy==1.5.0
 portalocker==2.10.1
 posthog==3.7.4
-prompt_toolkit==3.0.48
-promptflow==1.17.2
-promptflow-azure==1.17.2
-promptflow-core==1.17.2
-promptflow-devkit==1.17.2
-promptflow-tools==1.6.0
-promptflow-tracing==1.17.2
+
 propcache==0.2.1
 proto-plus==1.25.0
 protobuf==5.29.1
